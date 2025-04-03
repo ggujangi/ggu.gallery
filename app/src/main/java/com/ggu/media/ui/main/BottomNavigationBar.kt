@@ -1,25 +1,23 @@
 package com.ggu.media.ui.main
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.ggu.media.R
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
     val topLevelRoutes = listOf(
-        TopLevelRoute("Media", Media, Icons.Default.Home),
-        TopLevelRoute("Album", Album, Icons.Default.Menu),
-        TopLevelRoute("Story", Story, Icons.Default.Star),
+        TopLevelRoute("Media", Media, R.drawable.ic_photo_library),
+        TopLevelRoute("Album", Album, R.drawable.ic_folder),
+        TopLevelRoute("Story", Story, R.drawable.ic_location_on),
     )
 
     NavigationBar {
@@ -28,7 +26,12 @@ fun BottomNavigationBar(navController: NavHostController) {
 
         topLevelRoutes.forEach { route ->
             NavigationBarItem(
-                icon = { Icon(imageVector = route.icon, contentDescription = route.name) },
+                icon = {
+                    Icon(
+                        painter = painterResource(id = route.icon),
+                        contentDescription = route.name
+                    )
+                },
                 label = { Text(route.name) },
                 selected = currentDestination?.route == route.route::class.qualifiedName,
                 onClick = {
