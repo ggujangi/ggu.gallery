@@ -20,9 +20,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ggu.media.R
+import com.ggu.media.domain.MediaUiData
 
 @Composable
-fun MediaPhotoItem() {
+fun MediaPhotoItem(photoData: MediaUiData.MediaPhotoUiData) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -30,27 +31,28 @@ fun MediaPhotoItem() {
     ) {
         Image(
             modifier = Modifier.matchParentSize(),
-            painter = painterResource(id = R.drawable.test),
+            painter = painterResource(id = photoData.imageResId),
             contentDescription = "사진",
             contentScale = ContentScale.Crop
         )
-        // TODO : gif 조건 추가
-        Surface(
-            color = Color.Black.copy(alpha = 0.6f),
-            shape = MaterialTheme.shapes.small,
-            modifier = Modifier
-                .align(Alignment.BottomStart)
-                .padding(4.dp)
-        ) {
-            Text(
-                text = "GIF",
-                style = TextStyle(
-                    color = Color.White,
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = 12.sp
-                ),
-                modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
-            )
+        if (photoData.extension == "gif") {
+            Surface(
+                color = Color.Black.copy(alpha = 0.6f),
+                shape = MaterialTheme.shapes.small,
+                modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(4.dp)
+            ) {
+                Text(
+                    text = "GIF",
+                    style = TextStyle(
+                        color = Color.White,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 12.sp
+                    ),
+                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
+                )
+            }
         }
     }
 }
@@ -58,5 +60,5 @@ fun MediaPhotoItem() {
 @Preview
 @Composable
 fun MediaPhotoItemPreview() {
-    MediaPhotoItem()
+    MediaPhotoItem(MediaUiData.MediaPhotoUiData(R.drawable.test, "jpg"))
 }

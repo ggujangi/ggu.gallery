@@ -26,9 +26,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ggu.media.R
+import com.ggu.media.domain.MediaUiData
 
 @Composable
-fun MediaVideoItem() {
+fun MediaVideoItem(videoData: MediaUiData.MediaVideoUiData) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -36,7 +37,7 @@ fun MediaVideoItem() {
     ) {
         Image(
             modifier = Modifier.matchParentSize(),
-            painter = painterResource(id = R.drawable.test),
+            painter = painterResource(id = videoData.imageResId),
             contentDescription = "동영상",
             contentScale = ContentScale.Crop
         )
@@ -59,7 +60,7 @@ fun MediaVideoItem() {
                 )
                 Spacer(modifier = Modifier.width(2.dp))
                 Text(
-                    text = "23:00",
+                    text = formatDuration(videoData.duration),
                     style = TextStyle(color = Color.White, fontSize = 12.sp),
                 )
             }
@@ -67,8 +68,20 @@ fun MediaVideoItem() {
     }
 }
 
+private fun formatDuration(duration: Long): String {
+    val hours = duration / 3600
+    val minutes = (duration % 3600) / 60
+    val seconds = duration % 60
+
+    return if (hours > 0) {
+        String.format("%d:%02d:%02d", hours, minutes, seconds)
+    } else {
+        String.format("%d:%02d", minutes, seconds)
+    }
+}
+
 @Preview
 @Composable
 fun MediaVideoItemPreview() {
-    MediaVideoItem()
+    MediaVideoItem(MediaUiData.MediaVideoUiData(R.drawable.test, "mp4", 1440))
 }

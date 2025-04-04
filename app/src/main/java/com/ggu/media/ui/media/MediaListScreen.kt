@@ -19,8 +19,8 @@ fun MediaListScreen(items: List<MediaUiData>) {
     ) {
         items(items) {
             when (it) {
-                is MediaUiData.MediaPhotoUiData -> MediaPhotoItem()
-                is MediaUiData.MediaVideoUiData -> MediaVideoItem()
+                is MediaUiData.MediaPhotoUiData -> MediaPhotoItem(it)
+                is MediaUiData.MediaVideoUiData -> MediaVideoItem(it)
             }
         }
     }
@@ -34,6 +34,7 @@ fun MediaListScreenPreview() {
             MediaUiData.MediaPhotoUiData(R.drawable.test, "jpg"),
             MediaUiData.MediaPhotoUiData(R.drawable.test, "gif"),
             MediaUiData.MediaVideoUiData(R.drawable.test, "mp4", 1440),
+            MediaUiData.MediaVideoUiData(R.drawable.test, "mp4", 2440),
         )
     )
 }
