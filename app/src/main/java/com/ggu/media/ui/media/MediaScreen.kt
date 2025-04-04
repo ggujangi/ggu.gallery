@@ -1,11 +1,14 @@
 package com.ggu.media.ui.media
 
 import androidx.compose.runtime.Composable
-import com.ggu.media.Greeting
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun MediaScreen() {
-    Greeting(
-        name = "Media",
-    )
+fun MediaScreen(
+    mediaListViewModel: MediaListViewModel = viewModel()
+) {
+    val items by mediaListViewModel.mediaItems.collectAsState()
+    MediaListScreen(items = items)
 }
