@@ -1,14 +1,15 @@
 package com.ggu.media.ui.media
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.ggu.media.domain.MediaUiData
 
 @Composable
 fun MediaScreen(
     mediaListViewModel: MediaListViewModel = viewModel()
 ) {
-    val items by mediaListViewModel.mediaItems.collectAsState()
-    MediaListScreen(items = items)
+    val mediaItems: LazyPagingItems<MediaUiData> = mediaListViewModel.mediaItems.collectAsLazyPagingItems()
+    MediaListScreen(items = mediaItems)
 }
