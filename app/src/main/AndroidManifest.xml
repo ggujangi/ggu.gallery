@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
 
     <!-- Android 13 (API 레벨 33) 이상에서는 READ_EXTERNAL_STORAGE 대신 READ_MEDIA_IMAGES, READ_MEDIA_VIDEO 권한을 사용 -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
