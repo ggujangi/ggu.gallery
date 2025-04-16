@@ -10,11 +10,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ggu.media.ui.album.AlbumScreen
 import com.ggu.media.ui.media.MediaScreen
+import com.ggu.media.ui.permission.PermissionState
 import com.ggu.media.ui.story.StoryScreen
 
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    permissionState: PermissionState
+) {
     val navController = rememberNavController()
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
