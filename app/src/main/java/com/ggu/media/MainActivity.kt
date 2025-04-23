@@ -45,7 +45,11 @@ class MainActivity : ComponentActivity() {
                         requestMediaPermission(permissionLauncher)
                     }
 
-                    else -> MainScreen(permissionState = permissionState)
+                    else -> MainScreen(
+                        permissionState = permissionState,
+                        onRequestPermission = {
+                            requestMediaPermission(permissionLauncher)
+                        })
                 }
             }
         }

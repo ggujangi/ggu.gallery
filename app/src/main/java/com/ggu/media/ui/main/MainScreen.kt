@@ -15,7 +15,8 @@ import com.ggu.media.ui.story.StoryScreen
 
 @Composable
 fun MainScreen(
-    permissionState: PermissionState
+    permissionState: PermissionState,
+    onRequestPermission: () -> Unit
 ) {
     val navController = rememberNavController()
 
@@ -30,7 +31,7 @@ fun MainScreen(
             modifier = Modifier.padding(innerPadding),
             startDestination = Media
         ) {
-            composable<Media> { MediaScreen() }
+            composable<Media> { MediaScreen(permissionState, onRequestPermission) }
             composable<Album> { AlbumScreen() }
             composable<Story> { StoryScreen() }
         }

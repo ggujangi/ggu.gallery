@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MediaProject</string>
+    <string name="message_media_permission_partial_granted">Manage your selected photos and videos.</string>
+    <string name="button_media_permission_manage">Manage</string>
 </resources>
